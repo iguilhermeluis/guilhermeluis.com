@@ -9,13 +9,16 @@ const feeds = [
   {
     serialize: ({ query: { site, allMarkdownRemark } }) => {
       return allMarkdownRemark.edges.map(edge => {
-        const postUrl = path.join(site.siteMetadata.siteUrl, edge.node.fields.slug)
+        const postUrl = path.join(
+          site.siteMetadata.siteUrl,
+          edge.node.fields.slug
+        )
         return Object.assign({}, edge.node.frontmatter, {
           description: edge.node.frontmatter.description,
           date: edge.node.frontmatter.date,
           url: postUrl,
           guid: postUrl,
-          custom_elements: [{ 'content:encoded': edge.node.html }]
+          custom_elements: [{ 'content:encoded': edge.node.html }],
         })
       })
     },
@@ -39,8 +42,8 @@ const feeds = [
       }
     `,
     output: '/feed.xml',
-    title: 'Felipe Fialho - RSS Feed'
-  }
+    title: 'Guilherme Luis - RSS Feed',
+  },
 ]
 
 const plugins = [
@@ -51,8 +54,8 @@ const plugins = [
     resolve: 'gatsby-source-filesystem',
     options: {
       path: `${__dirname}/static/assets`,
-      name: 'uploads'
-    }
+      name: 'uploads',
+    },
   },
   {
     resolve: `gatsby-source-filesystem`,
@@ -97,14 +100,14 @@ const plugins = [
             // the content container as this plugin uses this as the
             // base for generating different widths of each image.
             maxWidth: 650,
-            linkImagesToOriginal: false
+            linkImagesToOriginal: false,
           },
         },
         {
           resolve: 'gatsby-remark-copy-linked-files',
           options: {
-            destinationDir: 'static/assets/'
-          }
+            destinationDir: 'static/assets/',
+          },
         },
         {
           resolve: `gatsby-remark-responsive-iframe`,
@@ -117,16 +120,8 @@ const plugins = [
           options: {
             usePrefix: false,
             providers: {
-              include: [
-                'Youtube',
-                'Twitter',
-                'Codepen',
-              ],
-              exclude: [
-                'Reddit',
-                'Flickr',
-                'Instagram'
-              ]
+              include: ['Youtube', 'Twitter', 'Codepen'],
+              exclude: ['Reddit', 'Flickr', 'Instagram'],
             },
           },
         },
@@ -153,21 +148,21 @@ const plugins = [
           }
         }
       `,
-      feeds
-    }
+      feeds,
+    },
   },
   {
     resolve: 'gatsby-plugin-i18n',
     options: {
       langKeyDefault: 'pt-br',
-      useLangKeyLayout: false
-    }
+      useLangKeyLayout: false,
+    },
   },
   {
     resolve: `gatsby-plugin-manifest`,
     options: {
-      name: `Felipe Fialho`,
-      short_name: `felipefialho.com`,
+      name: `Guilherme Luis`,
+      short_name: `guilhermeluis.com`,
       start_url: `/`,
       background_color: `#fcfcfc`,
       theme_color: `#111111`,
@@ -180,8 +175,8 @@ const plugins = [
   {
     resolve: 'gatsby-plugin-netlify-cache',
     options: {
-      cachePublic: true
-    }
+      cachePublic: true,
+    },
   },
 ]
 
@@ -193,16 +188,16 @@ if (process.env.CONTEXT === 'production') {
       apiKey: process.env.ALGOLIA_ADMIN_KEY,
       queries,
       chunkSize: 10000, // default: 1000
-      enablePartialUpdates: true
-    }
+      enablePartialUpdates: true,
+    },
   }
 
   const analytics = {
     resolve: `gatsby-plugin-google-analytics`,
     options: {
       trackingId: process.env.GOOGLE_ANALYTICS_ID,
-      head: false
-    }
+      head: false,
+    },
   }
 
   plugins.push(algolia)
@@ -211,20 +206,20 @@ if (process.env.CONTEXT === 'production') {
 
 module.exports = {
   siteMetadata: {
-    title: `Felipe Fialho - Front-end Developer`,
-    author: `Felipe Fialho`,
-    position: 'Front-end Developer',
+    title: `Guilherme Luis - Full-Stack Developer`,
+    author: `Guilherme Luis`,
+    position: 'Full-Stack Developer',
     description: `Site pessoal e blog de um desenvolvedor Front-end apaixonado por criar coisas e compartilhar boas idéias.`,
     descriptionEn: `Personal website of a Front End developer passionate about create things and sharing good ideas.`,
-    siteUrl: `https://felipefialho.com/`,
+    siteUrl: `https://guilhermeluis.com/`,
     social: {
-      twitter: `felipefialho_`,
-      twitterLink: `https://twitter.com/felipefialho_`,
-      linkedinLink: `https://www.linkedin.com/in/felipefialho/`,
-      githubLink: `https://github.com/felipefialho`,
-      codepenLink: `https://codepen.io/felipefialho`,
-      mediumLink: `https://medium.com/@felipefialho`,
+      twitter: `gldesenvolvedor`,
+      twitterLink: `https://twitter.com/gldesenvolvedor`,
+      linkedinLink: `https://www.linkedin.com/in/guilherme-luis/`,
+      githubLink: `https://github.com/iguilhermeluis`,
+      codepenLink: `https://codepen.io/iguilhermeluis`,
+      mediumLink: `https://medium.com/@iguilhermeluis`,
     },
   },
-  plugins
+  plugins,
 }

@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: felipefialho/felipefialho.com
+  repo: iguilhermeluis/guilhermeluis.com
   branch: master
-  #site_domain: felipefialho.com
+  #site_domain: guilhermeluis.com
 
 media_folder: static/assets/posts
 public_folder: assets
@@ -17,7 +17,12 @@ collections:
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template i.e. title.md
     fields: # The fields for each document, usually in front matter
       - { label: Layout, name: layout, widget: hidden, default: post }
-      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD hh:mm:ss }
+      - {
+          label: Date,
+          name: date,
+          widget: datetime,
+          format: YYYY-MM-DD hh:mm:ss,
+        }
       - { label: Cover, name: image, widget: image }
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: string }
